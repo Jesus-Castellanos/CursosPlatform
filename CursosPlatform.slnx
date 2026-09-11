@@ -1,0 +1,10 @@
+<Solution>
+  <Project Path="Courses-web/Courses-web.esproj">
+    <Build />
+    <Deploy />
+  </Project>
+  <Project Path="Courses.API/Courses.API.csproj" />
+  <Project Path="Courses.Application/Courses.Application.csproj" />
+  <Project Path="Courses.Domain/Courses.Domain.csproj" />
+  <Project Path="Courses.Infrastructure/Courses.Infrastructure.csproj" />
+</Solution>
