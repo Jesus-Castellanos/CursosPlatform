@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace Courses.Domain.Entities;
+namespace Courses.Application.DTOs.Courses;
 
-public class Course
+public class CourseDto
 {
     public int CourseId { get; set; }
     public string Title { get; set; } = string.Empty;
@@ -18,9 +18,4 @@ public class Course
     public bool IsActive { get; set; }
     public DateTime CreatedAt { get; set; }
     public DateTime? UpdatedAt { get; set; }
-
-    public Category Category { get; set; } = null!;
-    public User CreatedByUser { get; set; } = null!;
-    public ICollection<Lesson> Lessons { get; set; } = new List<Lesson>();
-    public ICollection<Enrollment> Enrollments { get; set; } = new List<Enrollment>();
 }

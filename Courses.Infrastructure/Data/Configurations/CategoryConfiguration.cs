@@ -13,22 +13,22 @@ namespace Courses.Infrastructure.Data.Configurations
         {
             builder.ToTable("Categories");
 
-            builder.HasKey(c => c.CategoryId);
+            builder.HasKey(x => x.CategoryId);
 
-            builder.Property(c => c.Name)
+            builder.Property(x => x.Name)
                 .HasMaxLength(100)
                 .IsRequired();
 
-            builder.HasIndex(c => c.Name)
+            builder.HasIndex(x => x.Name)
                 .IsUnique();
 
-            builder.Property(c => c.Description)
+            builder.Property(x => x.Description)
                 .HasMaxLength(500);
 
-            builder.Property(c => c.CreatedAt)
+            builder.Property(x => x.CreatedAt)
                 .HasDefaultValueSql("SYSDATETIME()");
 
-            builder.Property(c => c.IsActive)
+            builder.Property(x => x.IsActive)
                 .HasDefaultValue(true);
         }
     }

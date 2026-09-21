@@ -2,27 +2,28 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
-namespace Courses.Infrastructure.Data.Configurations;
+namespace Courses.Infrastructure.Data.Configurations
 {
-    internal class RoleConfiguration : IEntityTypeConfiguration<Role>
-{
-    public void Configure(EntityTypeBuilder<Role> builder)
+    public class RoleConfiguration : IEntityTypeConfiguration<Role>
     {
-        builder.ToTable("Roles");
+        public void Configure(EntityTypeBuilder<Role> builder)
+        {
+            builder.ToTable("Roles");
 
-        builder.HasKey(r => r.RoleId);
+            builder.HasKey(x => x.RoleId);
 
-        builder.Property(r => r.Name)
-            .HasMaxLength(50)
-            .IsRequired();
-            
-        builder.HasIndex(r => r.Name)
-            .IsUnique();
+            builder.Property(x => x.Name)
+                .HasMaxLength(50)
+                .IsRequired();
 
-        builder.Property(r => r.Description)
-            .HasMaxLength(255);
+            builder.HasIndex(x => x.Name)
+                .IsUnique();
 
-        builder.Property(r => r.CreatedAt)
-            .HasDefaultValueSql("SYSDATETIME()");
+            builder.Property(x => x.Description)
+                .HasMaxLength(255);
+
+            builder.Property(x => x.CreatedAt)
+                .HasDefaultValueSql("SYSDATETIME()");
+        }
     }
 }

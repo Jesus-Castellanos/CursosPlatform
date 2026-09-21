@@ -13,24 +13,24 @@ namespace Courses.Infrastructure.Data.Configurations
         {
             builder.ToTable("UserRoles");
 
-            builder.HasKey(ur => new 
+            builder.HasKey(x => new 
             { 
-                ur.UserId, 
-                ur.RoleId 
+                x.UserId, 
+                x.RoleId 
             });
 
             builder.Property(x => x.AssignedAt)
                 .IsRequired()
                 .HasDefaultValueSql("SYSDATETIME()");
 
-            builder.HasOne(ur => ur.User)
-                .WithMany(u => u.UserRoles)
-                .HasForeignKey(ur => ur.UserId)
+            builder.HasOne(x => x.User)
+                .WithMany(x => x.UserRoles)
+                .HasForeignKey(x => x.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
 
-            builder.HasOne(ur => ur.Role)
-                .WithMany(r => r.UserRoles)
-                .HasForeignKey(ur => ur.RoleId)
+            builder.HasOne(x => x.Role)
+                .WithMany(x => x.UserRoles)
+                .HasForeignKey(x => x.RoleId)
                 .OnDelete(DeleteBehavior.Cascade);
         }
     }

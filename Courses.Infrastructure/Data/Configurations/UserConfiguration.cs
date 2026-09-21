@@ -23,6 +23,8 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
         builder.Property(x => x.Email)
             .HasMaxLength(255)
             .IsRequired();
+        builder.HasIndex(x => x.Email)
+            .IsUnique();
 
         builder.Property(x => x.PasswordHash)
             .IsRequired();
@@ -31,6 +33,6 @@ public class UserConfiguration : IEntityTypeConfiguration<User>
             .HasDefaultValueSql("SYSDATETIME()");
 
         builder.Property(x => x.IsActive)
-            .HasDefaultValueSql("1");
+    .HasDefaultValueSql("CAST(1 AS bit)");
     }
 }

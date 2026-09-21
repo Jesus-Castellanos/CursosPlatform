@@ -10,4 +10,8 @@
     <ProjectReference Include="..\Courses.Domain\Courses.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Argon2id.PasswordHasher" Version="1.0.0" />
+  </ItemGroup>
+
 </Project>

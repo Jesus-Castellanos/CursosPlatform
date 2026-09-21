@@ -14,7 +14,7 @@ public class Lesson
     public string ContentUrl { get; set; } = string.Empty;
     public int LessonOrder { get; set; }
     public int? DurationMinutes { get; set; }
-    public bool IsPreview { get; set; }
+    public bool? IsPreview { get; set; }
     public DateTime CreatedAt { get; set; }
     public DateTime? UpdatedAt { get; set; }
 
