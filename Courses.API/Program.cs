@@ -30,6 +30,16 @@ builder.Services.AddScoped<IRoleServices, RolesService>();
 builder.Services.AddScoped<IUserRoleRepository, UserRoleRepository>();
 builder.Services.AddScoped<IUserRolesService, UserRolesService>();
 
+builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+builder.Services.AddScoped<ICategoriesService, CategoriesService>();
+
+builder.Services.AddScoped<
+    ICourseSectionRepository,
+    CourseSectionRepository>();
+
+builder.Services.AddScoped<
+    ICourseSectionsService,
+    CourseSectionsService>();
 
 
 var allowedOrigins = builder.Configuration
