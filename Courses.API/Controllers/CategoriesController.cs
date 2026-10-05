@@ -1,11 +1,13 @@
 ﻿using Courses.Application.DTOs.Categories;
 using Courses.Application.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Courses.API.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize]
 public class CategoriesController : ControllerBase
 {
     private readonly ICategoriesService _categoriesService;
@@ -16,6 +18,8 @@ public class CategoriesController : ControllerBase
         _categoriesService = categoriesService;
     }
 
+    // GET: api/categories
+    // Admin, Instructor y Student pueden consultar categorías.
     [HttpGet]
     public async Task<ActionResult<IEnumerable<CategoryDto>>> GetAll()
     {
@@ -25,6 +29,8 @@ public class CategoriesController : ControllerBase
         return Ok(categories);
     }
 
+    // GET: api/categories/5
+    // Admin, Instructor y Student pueden consultar una categoría.
     [HttpGet("{id:int}")]
     public async Task<ActionResult<CategoryDto>> GetById(int id)
     {
@@ -43,6 +49,9 @@ public class CategoriesController : ControllerBase
         return Ok(category);
     }
 
+    // POST: api/categories
+    // Solo Admin e Instructor pueden crear categorías.
+    [Authorize(Roles = "Admin,Instructor")]
     [HttpPost]
     public async Task<ActionResult<CategoryDto>> Create(
         [FromBody] CreateCategoryDto dto)
@@ -73,6 +82,9 @@ public class CategoriesController : ControllerBase
         }
     }
 
+    // PUT: api/categories/5
+    // Solo Admin e Instructor pueden modificar categorías.
+    [Authorize(Roles = "Admin,Instructor")]
     [HttpPut("{id:int}")]
     public async Task<IActionResult> Update(
         int id,
@@ -110,6 +122,9 @@ public class CategoriesController : ControllerBase
         }
     }
 
+    // DELETE: api/categories/5
+    // Solo Admin puede eliminar categorías.
+    [Authorize(Roles = "Admin")]
     [HttpDelete("{id:int}")]
     public async Task<IActionResult> Delete(int id)
     {

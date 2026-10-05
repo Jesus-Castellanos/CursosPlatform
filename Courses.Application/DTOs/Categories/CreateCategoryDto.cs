@@ -7,5 +7,5 @@ namespace Courses.Application.DTOs.Categories;
 public class CreateCategoryDto
 {
     public string Name { get; set; } = string.Empty;
-    public string? Descripcion { get; set; }
+    public string? Description { get; set; }
 }

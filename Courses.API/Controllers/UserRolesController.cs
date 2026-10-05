@@ -1,11 +1,13 @@
 ﻿using Courses.Application.DTOs.UserRoles;
 using Courses.Application.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Courses.API.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize(Roles = "Admin")]
 public class UserRolesController : ControllerBase
 {
     private readonly IUserRolesService _userRolesService;

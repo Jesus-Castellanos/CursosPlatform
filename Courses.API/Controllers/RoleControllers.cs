@@ -1,12 +1,13 @@
 ﻿using Courses.Application.DTOs.Roles;
 using Courses.Application.Interfaces;
-using Courses.Application.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Courses.API.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]
+[Authorize(Roles = "Admin")]
 public class RolesController : ControllerBase
 {
     private readonly IRoleServices _rolesService;
@@ -46,8 +47,7 @@ public class RolesController : ControllerBase
     {
         try
         {
-            var role = await _rolesService.CreateAsync(
-                createRoleDto);
+            var role = await _rolesService.CreateAsync(createRoleDto);
 
             return CreatedAtAction(
                 nameof(GetById),
@@ -85,8 +85,7 @@ public class RolesController : ControllerBase
             {
                 return NotFound(new
                 {
-                    message =
-                        $"No se encontró el rol con ID {id}."
+                    message = $"No se encontró el rol con ID {id}."
                 });
             }
 
@@ -119,8 +118,7 @@ public class RolesController : ControllerBase
             {
                 return NotFound(new
                 {
-                    message =
-                        $"No se encontró el rol con ID {id}."
+                    message = $"No se encontró el rol con ID {id}."
                 });
             }
 

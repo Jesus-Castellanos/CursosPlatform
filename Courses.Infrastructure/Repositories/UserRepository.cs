@@ -31,7 +31,15 @@ public class UserRepository : IUserRepository
     public async Task<User?> GetByEmailAsync(string email)
     {
         return await _context.Users
+            .AsNoTracking()
             .FirstOrDefaultAsync(x => x.Email == email);
+    }
+    public async Task<List<string>> GetRolesByUserIdAsync(int userId)
+    {
+        return await _context.UserRoles
+            .Where(x => x.UserId == userId)
+            .Select(x => x.Role.Name)
+            .ToListAsync();
     }
 
     public async Task<User> AddAsync(User user)
